@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BERITA KITA - Portal Berita</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #172033;
+}
+
+header {
+    background: #c90024;
+    color: white;
+    padding: 22px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 28px;
+}
+
+header span {
+    color: #ffe082;
+}
+
+nav {
+    background: #8f001a;
+    padding: 14px 6%;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffe082;
+}
+
+.running {
+    background: white;
+    padding: 12px;
+    overflow: hidden;
+    color: #c90024;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+.hero {
+    background: #111827;
+    color: white;
+    padding: 35px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    animation: muncul 1s ease;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    line-height: 1.7;
+}
+
+.tools {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+input {
+    flex: 1;
+    min-width: 180px;
+}
+
+button {
+    background: #c90024;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background: #8f001a;
+}
+
+.section-title {
+    margin: 25px 0 15px;
+    border-left: 5px solid #c90024;
+    padding-left: 12px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px #00000012;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px #00000020;
+}
+
+.card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    background: #ddd;
+}
+
+.card-body {
+    padding: 18px;
+}
+
+.category {
+    display: inline-block;
+    color: #c90024;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.card .date {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    margin: 12px 0;
+}
+
+.card button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.admin {
+    margin-top: 35px;
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px #00000010;
+}
+
+.admin h2 {
+    margin-bottom: 15px;
+}
+
+.admin input,
+.admin select,
+.admin textarea {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.admin textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.preview {
+    max-width: 100%;
+    max-height: 240px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: none;
+}
+
+#detail {
+    display: none;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+#detail img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+#detail p {
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+footer {
+    text-align: center;
+    background: #111827;
+    color: white;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+@keyframes muncul {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media(max-width:600px) {
+    header h1 {
+        font-size: 23px;
+    }
+
+    .hero {
+        padding: 23px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📰 BERITA <span>KITA</span></h1>
+    <p>Informasi Terkini dan Terpercaya</p>
+</header>
+
+<nav>
+    <a href="#" onclick="filterKategori('Semua');return false">Beranda</a>
+    <a href="#" onclick="filterKategori('Nasional');return false">Nasional</a>
+    <a href="#" onclick="filterKategori('Teknologi');return false">Teknologi</a>
+    <a href="#" onclick="filterKategori('Olahraga');return false">Olahraga</a>
+    <a href="#" onclick="filterKategori('Pendidikan');return false">Pendidikan</a>
+</nav>
+
+<div class="running">
+    <marquee>🔴 SELAMAT DATANG DI BERITA KITA — Portal Berita Online</marquee>
+</div>
+
+<main class="container">
+
+    <section class="hero">
+        <h2>Berita Terkini Hari Ini</h2>
+        <p>
+            Temukan informasi terbaru seputar dunia,
+            teknologi, pendidikan, olahraga, dan berbagai
+            peristiwa menarik lainnya.
+        </p>
+    </section>
+
+    <div class="tools">
+        <input
+            type="search"
+            id="search"
+            placeholder="🔎 Cari berita..."
+            oninput="tampilkanBerita()">
+
+        <select id="filter" onchange="tampilkanBerita()">
+            <option value="Semua">Semua Kategori</option>
+            <option value="Nasional">Nasional</option>
+            <option value="Teknologi">Teknologi</option>
+            <option value="Olahraga">Olahraga</option>
+            <option value="Pendidikan">Pendidikan</option>
+        </select>
+    </div>
+
+    <section id="detail">
+        <button onclick="tutupDetail()">← Kembali ke berita</button>
+        <h2 id="detailJudul" style="margin-top:20px"></h2>
+        <img id="detailGambar" alt="Gambar berita">
+        <p id="detailIsi"></p>
+    </section>
+
+    <h2 class="section-title">🔥 Berita Terbaru</h2>
+    <section class="news-grid" id="daftarBerita"></section>
+
+    <section class="admin">
+        <h2>✍️ Tambah Berita Baru</h2>
+        <p style="margin-bottom:18px;color:#64748b">
+            Isi formulir di bawah untuk memasang gambar
+            dan membuat berita sendiri.
+        </p>
+
+        <form id="formBerita">
+            <label>Judul Berita</label>
+            <input id="judul" required
+                placeholder="Masukkan judul berita">
+
+            <label>Kategori</label>
+            <select id="kategori">
+                <option>Nasional</option>
+                <option>Teknologi</option>
+                <option>Olahraga</option>
+                <option>Pendidikan</option>
+            </select>
+
+            <label>Isi Berita</label>
+            <textarea id="isi" required
+                placeholder="Tuliskan isi berita lengkap..."></textarea>
+
+            <label>Pasang Gambar dari HP</label>
+            <input type="file" id="gambarFile"
+                accept="image/*">
+
+            <img id="preview" class="preview"
+                alt="Pratinjau gambar">
+
+            <label>Atau masukkan URL gambar</label>
+            <input id="gambarURL" type="url"
+                placeholder="https://contoh.com/gambar.jpg">
+
+            <button type="submit" style="width:100%">
+                ➕ TERBITKAN BERITA
+            </button>
+        </form>
+    </section>
+
+</main>
+
+<footer>
+    <h3>📰 BERITA KITA</h3>
+    <p style="margin-top:10px">
+        © 2026 Berita Kita. Semua Hak Dilindungi.
+    </p>
+</footer>
+
+<script>
+let berita = [
+    {
+        judul: "Selamat Datang di Portal Berita Kita",
+        kategori: "Nasional",
+        isi: "Ini adalah contoh berita pertama. Kamu bisa menggantinya dengan berita buatanmu sendiri melalui formulir di bawah.",
+        gambar: "",
+        tanggal: new Date().toLocaleDateString("id-ID")
+    },
+    {
+        judul: "Perkembangan Teknologi Digital",
+        kategori: "Teknologi",
+        isi: "Teknologi digital terus berkembang dan membantu masyarakat dalam berbagai aktivitas sehari-hari.",
+        gambar: "",
+        tanggal: new Date().toLocaleDateString("id-ID")
+    },
+    {
+        judul: "Semangat Belajar Generasi Muda",
+        kategori: "Pendidikan",
+        isi: "Pendidikan merupakan bagian penting dalam membangun masa depan yang lebih baik.",
+        gambar: "",
+        tanggal: new Date().toLocaleDateString("id-ID")
+    }
+];
+
+let gambarTerpilih = "";
+
+const fileInput = document.getElementById("gambarFile");
+const urlInput = document.getElementById("gambarURL");
+const preview = document.getElementById("preview");
+
+fileInput.addEventListener("change", function() {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Pilih file gambar yang benar!");
+        this.value = "";
+        return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+        alert("Ukuran gambar maksimal 5 MB.");
+        this.value = "";
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        gambarTerpilih = e.target.result;
+        preview.src = gambarTerpilih;
+        preview.style.display = "block";
+        urlInput.value = "";
+    };
+
+    reader.readAsDataURL(file);
+});
+
+urlInput.addEventListener("input", function() {
+    if (this.value.trim()) {
+        gambarTerpilih = "";
+        fileInput.value = "";
+        preview.src = this.value.trim();
+        preview.style.display = "block";
+    } else if (!fileInput.files.length) {
+        preview.style.display = "none";
+    }
+});
+
+function buatElemen(tag, teks, className) {
+    const el = document.createElement(tag);
+    el.textContent = teks;
+
+    if (className) el.className = className;
+
+    return el;
+}
+
+function tampilkanBerita() {
+    const daftar = document.getElementById("daftarBerita");
+    const kata = document.getElementById("search").value.toLowerCase();
+    const kategori = document.getElementById("filter").value;
+
+    daftar.replaceChildren();
+
+    const hasil = berita.filter(b => {
+        const cocokKata =
+            b.judul.toLowerCase().includes(kata) ||
+            b.isi.toLowerCase().includes(kata);
+
+        const cocokKategori =
+            kategori === "Semua" || b.kategori === kategori;
+
+        return cocokKata && cocokKategori;
+    });
+
+    if (hasil.length === 0) {
+        daftar.appendChild(
+            buatElemen("p", "Berita tidak ditemukan.")
+        );
+        return;
+    }
+
+    hasil.forEach(b => {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        if (b.gambar) {
+            const img = document.createElement("img");
+            img.src = b.gambar;
+            img.alt = b.judul;
+            img.loading = "lazy";
+            img.onerror = function() {
+                this.style.display = "none";
+            };
+            card.appendChild(img);
+        }
+
+        const body = document.createElement("div");
+        body.className = "card-body";
+
+        body.appendChild(
+            buatElemen("span", b.kategori, "category")
+        );
+
+        body.appendChild(buatElemen("h3", b.judul));
+
+        const ringkasan = b.isi.length > 120
+            ? b.isi.slice(0, 120) + "..."
+            : b.isi;
+
+        body.appendChild(buatElemen("p", ringkasan));
+        body.appendChild(buatElemen("span", b.tanggal, "date"));
+
+        const tombol = buatElemen("button", "Baca Selengkapnya");
+        tombol.addEventListener("click", () => bukaDetail(b));
+
+        body.appendChild(tombol);
+        card.appendChild(body);
+        daftar.appendChild(card);
+    });
+}
+
+function bukaDetail(b) {
+    document.getElementById("detailJudul").textContent = b.judul;
+    document.getElementById("detailIsi").textContent = b.isi;
+
+    const img = document.getElementById("detailGambar");
+
+    if (b.gambar) {
+        img.src = b.gambar;
+        img.style.display = "block";
+    } else {
+        img.removeAttribute("src");
+        img.style.display = "none";
+    }
+
+    document.getElementById("detail").style.display = "block";
+    document.getElementById("detail").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function tutupDetail() {
+    document.getElementById("detail").style.display = "none";
+}
+
+function filterKategori(kategori) {
+    document.getElementById("filter").value = kategori;
+    tampilkanBerita();
+    document.querySelector(".tools").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+document.getElementById("formBerita").addEventListener(
+    "submit",
+    function(e) {
+        e.preventDefault();
+
+        const judul = document.getElementById("judul").value.trim();
+        const isi = document.getElementById("isi").value.trim();
+        const kategori = document.getElementById("kategori").value;
+        const gambar = gambarTerpilih ||
+            document.getElementById("gambarURL").value.trim();
+
+        if (!judul || !isi) {
+            alert("Judul dan isi berita wajib diisi.");
+            return;
+        }
+
+        berita.unshift({
+            judul: judul,
+            isi: isi,
+            kategori: kategori,
+            gambar: gambar,
+            tanggal: new Date().toLocaleDateString("id-ID")
+        });
+
+        this.reset();
+        gambarTerpilih = "";
+        preview.src = "";
+        preview.style.display = "none";
+
+        document.getElementById("filter").value = "Semua";
+        document.getElementById("search").value = "";
+
+        tampilkanBerita();
+
+        alert("Berita berhasil ditambahkan!");
+        document.getElementById("daftarBerita").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+);
+
+tampilkanBerita();
+</script>
+
+</body>
+</html>
